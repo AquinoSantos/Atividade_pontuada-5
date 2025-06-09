@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Estoque de Bebidas (Simplificado)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Estoque de Bebidas</h1>
+
+        <h2>Cadastrar Bebida</h2>
+        <div class="form-group">
+            <label for="nomeBebida">Nome:</label>
+            <input type="text" id="nomeBebidaInput" placeholder="Ex: Coca-Cola 2L">
+        </div>
+        <div class="form-group">
+            <label for="tipoBebida">Tipo:</label>
+            <input type="text" id="tipoBebidaInput" placeholder="Ex: Refrigerante">
+        </div>
+        <div class="form-group">
+            <label for="quantidadeBebida">Quantidade:</label>
+            <input type="number" id="quantidadeBebidaInput" min="0" value="0">
+        </div>
+        <div class="form-group">
+            <label for="precoBebida">Preço Unitário:</label>
+            <input type="number" id="precoBebidaInput" min="0" step="0.01" value="0.00">
+        </div>
+        <button onclick="cadastrarBebida(nomeBebidaInput.value, tipoBebidaInput.value, quantidadeBebidaInput.value, precoBebidaInput.value)">Cadastrar</button>
+
+        <hr>
+
+        <h2>Buscar Bebida</h2>
+        <div class="form-group">
+            <label for="buscarNome">Nome da Bebida:</label>
+            <input type="text" id="buscarNomeInput" placeholder="Ex: Coca-Cola">
+        </div>
+        <button onclick="buscarBebida(buscarNomeInput.value)">Buscar</button>
+        <div id="resultadoBusca" class="message" style="display: none;"></div>
+
+        <hr>
+
+        <h2>Atualizar Quantidade</h2>
+        <div class="form-group">
+            <label for="nomeAtualizar">Nome da Bebida:</label>
+            <input type="text" id="nomeAtualizarInput" placeholder="Ex: Coca-Cola 2L">
+        </div>
+        <div class="form-group">
+            <label for="novaQuantidade">Nova Quantidade:</label>
+            <input type="number" id="novaQuantidadeInput" min="0" value="0">
+        </div>
+        <button onclick="atualizarQuantidade(nomeAtualizarInput.value, novaQuantidadeInput.value)">Atualizar</button>
+
+        <hr>
+
+        <h2>Estoque Atual</h2>
+        <button onclick="listarBebidas()">Atualizar Lista</button>
+        <table id="tabelaEstoque">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Quantidade</th>
+                    <th>Preço Unitário</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
